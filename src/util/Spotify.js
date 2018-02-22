@@ -46,6 +46,7 @@ const Spotify = {
 
     savePlaylist(playlistName, trackUri) {
         if (!playlistName || !trackUri) {
+            console.log("inside the if statement");
             return;
         }
         const accessToken = Spotify.getAccessToken();
