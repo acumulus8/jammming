@@ -23,6 +23,7 @@ class App extends Component {
     let trackId = this.state.playlistTracks.find(savedTrack => track.id===savedTrack.id);
     if (!trackId) {
       this.state.playlistTracks.push(track);
+      this.setState({playlistTracks: this.state.playlistTracks})
     }
   }
 

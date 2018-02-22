@@ -68,7 +68,7 @@ const Spotify = {
                     headers: headers,
                     contentType: 'application/json',
                     method: 'POST',
-                    body: JSON.stringify({name: playlistName})
+                    body: JSON.stringify({uris: trackUri})
                 }).then(response => response.json()
                 )
             })
