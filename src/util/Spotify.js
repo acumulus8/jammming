@@ -31,7 +31,7 @@ const Spotify = {
                 return response.json();
             }
         }).then(jsonResponse => {
-            if (!jsonResponse.track) {
+            if (!jsonResponse.tracks) {
                 return [];
             }
             return jsonResponse.tracks.items.map(track => ({
