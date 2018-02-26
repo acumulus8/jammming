@@ -32,9 +32,32 @@
     font-size: .83rem;
     transition: background-color .25s;
 }
+
+.clear {
+    background-color: #ec41aa;
+}
+
+.save-msg {
+    width: 10rem;
+    padding: .75rem;
+    border-radius: 54px;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: .75rem;
+    border: 3.5px solid #6c41ec;
+}
+
+.bold {
+    font-weight: bolder;
+    font-size: 1rem;
+}
   
 .Playlist-save:hover {
     background-color: rgba(108, 65, 233, .7);
+}
+
+.Playlist-save:active {
+    border: inset;
 }
   
 ::-webkit-scrollbar {
