@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./../../global-styles.css";
 import SiteHeader from "../SiteHeader/SiteHeader";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import Spotify from "../../util/Spotify";
+import LoginContent from "../LoginContent/LoginContent";
+import Spotify, { accessToken } from "../../util/Spotify";
 
 class App extends Component {
 	constructor(props) {
@@ -63,19 +65,25 @@ class App extends Component {
 			<div>
 				<SiteHeader />
 				<div className="App">
-					<SearchBar onSearch={this.search} />
-					<div className="App-playlist">
-						<SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} onRemove={this.removeTrack} />
-						<Playlist
-							playlistName={this.state.playlistName}
-							playlistTracks={this.state.playlistTracks}
-							onRemove={this.removeTrack}
-							onNameChange={this.updatePlaylistName}
-							onSave={this.savePlaylist}
-							click={this.makeClickTrue}
-							resetPlaylist={this.resetPlaylist}
-						/>
-					</div>
+					{accessToken ? (
+						<div>
+							<SearchBar onSearch={this.search} />
+							<div className="App-playlist">
+								<SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} onRemove={this.removeTrack} />
+								<Playlist
+									playlistName={this.state.playlistName}
+									playlistTracks={this.state.playlistTracks}
+									onRemove={this.removeTrack}
+									onNameChange={this.updatePlaylistName}
+									onSave={this.savePlaylist}
+									click={this.makeClickTrue}
+									resetPlaylist={this.resetPlaylist}
+								/>
+							</div>
+						</div>
+					) : (
+						<LoginContent />
+					)}
 				</div>
 			</div>
 		);
