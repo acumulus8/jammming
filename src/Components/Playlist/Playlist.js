@@ -7,9 +7,11 @@ class Playlist extends React.Component {
         super(props);
         this.state = {
                       displayMessage: '',
+                      defaultValue: 'New Playlist',
                     };
         this.handleNameChange = this.handleNameChange.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.clearFields = this.clearFields.bind(this);
     }
  
     handleNameChange(e) {
@@ -29,6 +31,15 @@ class Playlist extends React.Component {
         }
     }
 
+    clearFields() {
+        this.props.resetPlaylist();
+        this.setState({displayMessage: 'false'});
+    }
+
+    setDefaultValue() {
+        
+    }
+
     render() {
         return (
             <div className="Playlist">
@@ -40,7 +51,7 @@ class Playlist extends React.Component {
                 />
                 {this.renderMessage()}
                 <a className="Playlist-save" onClick={this.onClick} >SAVE TO SPOTIFY</a>
-                <a className="Playlist-save clear" onClick={this.props.resetPlaylist}>CLEAR PLAYLIST</a>
+                <a className="Playlist-save clear" onClick={this.clearFields}>CLEAR PLAYLIST</a>
             </div>
 
         )

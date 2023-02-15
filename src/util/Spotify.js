@@ -1,6 +1,6 @@
 let accessToken;
 const clientId = '56e57a50322842dba3d1374db5b60cce';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://jammming-tim.surge.sh';
 
 const Spotify = {
     getAccessToken() {
@@ -46,7 +46,7 @@ const Spotify = {
 
     savePlaylist(playlistName, trackUri) {
         if (!playlistName || !trackUri) {
-            console.log("inside the if statement");
+            console.log("no playlist name or trackUri was present during Spotify.savePlaylist");
             return;
         }
         const accessToken = Spotify.getAccessToken();
