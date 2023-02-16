@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./Playlist.css";
 import TrackList from "../TrackList/TrackList";
 import TrashCan from "../../image_assets/trash-can-icon.png";
