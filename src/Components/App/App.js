@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import LoginContent from "../LoginContent/LoginContent";
-import Spotify, { accessToken } from "../../util/Spotify";
+import Spotify from "../../util/Spotify";
 
 class App extends Component {
 	constructor(props) {
@@ -15,6 +15,7 @@ class App extends Component {
 			searchResults: [],
 			playlistName: "",
 			playlistTracks: [],
+			authorized: false,
 		};
 		this.addTrack = this.addTrack.bind(this);
 		this.removeTrack = this.removeTrack.bind(this);
@@ -22,6 +23,14 @@ class App extends Component {
 		this.savePlaylist = this.savePlaylist.bind(this);
 		this.search = this.search.bind(this);
 		this.resetPlaylist = this.resetPlaylist.bind(this);
+	}
+
+	componentDidMount() {
+		if (window.location.href.match(/access_token=([^&]*)/)) {
+			this.setState({ authorized: true });
+		} else {
+			this.setState({ authorized: false });
+		}
 	}
 
 	addTrack(track) {
@@ -60,12 +69,16 @@ class App extends Component {
 		this.setState({ playlistTracks: [] });
 	}
 
+	login() {
+		Spotify.getAccessToken();
+	}
+
 	render() {
 		return (
 			<div>
 				<SiteHeader />
 				<div className="App">
-					{accessToken ? (
+					{this.state.authorized ? (
 						<div>
 							<SearchBar onSearch={this.search} />
 							<div className="App-playlist">
@@ -82,7 +95,7 @@ class App extends Component {
 							</div>
 						</div>
 					) : (
-						<LoginContent />
+						<LoginContent login={this.login} />
 					)}
 				</div>
 			</div>

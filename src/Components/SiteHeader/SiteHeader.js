@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-// import { accessToken } from "../../util/Spotify";
 import "./site-header.css";
 
 class SiteHeader extends Component {
 	constructor(props) {
-		super();
-		this.state = {};
+		super(props);
 	}
 
 	render() {
@@ -14,7 +12,6 @@ class SiteHeader extends Component {
 				<h1>
 					Ja<span className="highlight">mmm</span>ing
 				</h1>
-				{/* <button className="log-in-out-btn">{accessToken ? "Log Out" : "Log In"}</button> */}
 			</div>
 		);
 	}

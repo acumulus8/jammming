@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import Spotify from "../../util/Spotify";
 import "./login-content.css";
 
 class LoginContent extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<div className="login-content">
@@ -12,7 +15,7 @@ class LoginContent extends Component {
 					<li>Search songs and create a playlist</li>
 					<li>Name it and save it!</li>
 				</ul>
-				<button onClick={Spotify.getAccessToken} className="primary-button">
+				<button onClick={this.props.login} className="primary-button">
 					Log in to Spotify
 				</button>
 			</div>
