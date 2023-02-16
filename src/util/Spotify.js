@@ -1,6 +1,5 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-let accessToken = urlParams.get("access_token");
+const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
+let accessToken = accessTokenMatch ? accessTokenMatch[1] : undefined;
 const clientId = "56e57a50322842dba3d1374db5b60cce";
 // const redirectUri = "http://localhost:3000";
 const redirectUri = "https://jammming-proj.netlify.app";
