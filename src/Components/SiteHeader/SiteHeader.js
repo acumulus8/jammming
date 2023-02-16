@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import "./site-header.css";
 
 class SiteHeader extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div className="site-header">
