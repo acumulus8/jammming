@@ -1,4 +1,6 @@
-let accessToken;
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+let accessToken = urlParams.get("access_token");
 const clientId = "56e57a50322842dba3d1374db5b60cce";
 const redirectUri = "http://localhost:3000";
 // const redirectUri = "https://jammming-proj.netlify.app";
@@ -25,7 +27,7 @@ const Spotify = {
 	},
 
 	search(term) {
-		const accessToken = Spotify.getAccessToken();
+		// if (!accessToken) return [];
 		return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
 			headers: { Authorization: `Bearer ${accessToken}` },
 		})
@@ -35,7 +37,7 @@ const Spotify = {
 				}
 			})
 			.then((jsonResponse) => {
-				if (!jsonResponse.tracks) {
+				if (!jsonResponse || !jsonResponse.tracks) {
 					return [];
 				}
 				return jsonResponse.tracks.items.map((track) => ({
@@ -51,9 +53,9 @@ const Spotify = {
 	savePlaylist(playlistName, trackUri) {
 		if (!playlistName || !trackUri) {
 			console.log("inside the if statement");
-			return;
+			return [];
 		}
-		const accessToken = Spotify.getAccessToken();
+		// const accessToken = Spotify.getAccessToken();
 		const headers = { Authorization: `Bearer ${accessToken}` };
 		let userId;
 		return fetch("https://api.spotify.com/v1/me", { headers: headers })
