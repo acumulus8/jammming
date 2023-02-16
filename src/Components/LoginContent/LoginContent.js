@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import "./login-content.css";
 
 class LoginContent extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<div className="login-content">
