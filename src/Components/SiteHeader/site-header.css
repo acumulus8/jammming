@@ -1,7 +1,7 @@
 .site-header {
 	width: 100%;
 	position: relative;
-	background-color: #010c3f;
+	background-color: var(--main-dark-purple);
 	height: 100px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 h1 .highlight {
-	color: #6c41ec;
+	color: var(--main-purple);
 }
 
 .log-in-out-btn {
@@ -28,7 +28,7 @@ h1 .highlight {
 	right: 5%;
 	transform: translateY(-50%);
 	cursor: pointer;
-	background-color: #6c41ec;
+	background-color: var(--main-purple);
 	color: #eaeaea;
 	border-radius: 4px;
 	border: none;

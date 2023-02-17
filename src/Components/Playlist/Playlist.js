@@ -7,7 +7,6 @@ class Playlist extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showSuccessMessage: false,
 			defaultValue: "New Playlist",
 			playlistName: "",
 		};
@@ -24,19 +23,6 @@ class Playlist extends React.Component {
 		e.preventDefault();
 		if (!this.props.playlistTracks.length) return;
 		this.props.onSave(this.state.playlistName);
-		this.setState({ showSuccessMessage: true });
-	}
-
-	renderMessage() {
-		if (this.state.showSuccessMessage === true) {
-			return (
-				<div className="save-msg">
-					Sounds good!
-					<br />
-					<span className="bold">Playlist has been saved!</span>
-				</div>
-			);
-		}
 	}
 
 	clearFields() {
@@ -49,10 +35,9 @@ class Playlist extends React.Component {
 		return (
 			<div className="playlist">
 				<input id="playlist-name" placeholder={"New Playlist"} value={this.state.playlistName} onChange={this.updatePlaylistName} />
-				<label for="playlist-name" className="playlist-label">
+				<label htmlFor="playlist-name" className="playlist-label">
 					PLAYLIST NAME
 				</label>
-				{this.renderMessage()}
 				{!!this.props.playlistTracks.length && (
 					<div className="playlist-action-container">
 						<a className="playlist-save" onClick={this.savePlaylist}>

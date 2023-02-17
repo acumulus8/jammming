@@ -12,7 +12,7 @@
 	border: 1px solid #fff;
 	border-radius: 3px;
 	margin-bottom: 2.22rem;
-	color: #010c3f;
+	color: var(--main-dark-purple);
 	text-align: center;
 	font-size: 1rem;
 }

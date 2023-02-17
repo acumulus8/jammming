@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./app.css";
 import "./../../global-styles.css";
 import SiteHeader from "../SiteHeader/SiteHeader";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import LoginContent from "../LoginContent/LoginContent";
+import Footer from "../Footer/Footer";
 import Spotify from "../../util/Spotify";
+import useSnackbar from "../../HOC/Snackbar/Snackbar";
 
 class App extends Component {
 	constructor(props) {
@@ -25,7 +27,10 @@ class App extends Component {
 
 	componentDidMount() {
 		if (window.location.href.match(/access_token=([^&]*)/)) {
-			this.setState({ authorized: true });
+			this.setState({ authorized: true }, () => {
+				console.log("Authorized: " + this.state.authorized);
+				this.props.showSnackbar("Logged in successfully!", "success", 7000);
+			});
 		} else {
 			this.setState({ authorized: false });
 		}
@@ -52,15 +57,24 @@ class App extends Component {
 			this.setState({
 				playlistName: "New Playlist",
 			});
+			this.props.showSnackbar("Playlist saved successfully!", "success", 9000);
 		});
 	}
 
 	search(term) {
-		return Spotify.search(term).then((tracks) => this.setState({ searchResults: tracks }));
+		return Spotify.search(term).then((tracks) =>
+			this.setState({ searchResults: tracks }, () => {
+				if (tracks.length <= 0) {
+					this.props.showSnackbar("No results found!", "error", 7000);
+				}
+			})
+		);
 	}
 
 	resetPlaylist() {
-		this.setState({ playlistTracks: [] });
+		this.setState({ playlistTracks: [] }, () => {
+			this.props.showSnackbar("Playlist cleared successfully!", "success", 7000);
+		});
 	}
 
 	login() {
@@ -86,6 +100,7 @@ class App extends Component {
 									resetPlaylist={this.resetPlaylist}
 								/>
 							</div>
+							<Footer />
 						</div>
 					) : (
 						<LoginContent login={this.login} />
@@ -96,4 +111,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default useSnackbar(App);
