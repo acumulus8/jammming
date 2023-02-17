@@ -1,5 +1,6 @@
 .wrapper {
 	max-width: 90%;
+	position: relative;
 }
 
 .App {

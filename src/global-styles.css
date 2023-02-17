@@ -1,3 +1,13 @@
+:root {
+	--main-purple: #6c41ec;
+	--main-dark-purple: #010c3f;
+	--text-light: #eaeaea;
+	--blue-contrast: #0d39fc;
+	--success: #00b3fc;
+	--error: #fcc00d;
+	--box-shadow-color: rgba(1, 12, 63, 0.39);
+}
+
 body,
 html,
 #root {
@@ -5,11 +15,11 @@ html,
 }
 
 html {
+	font-family: "Poppins", sans-serif;
 	font-size: 18px;
 }
 
 h2 {
-	font-family: "Poppins", sans-serif;
 	font-size: 1.55rem;
 }
 
@@ -18,7 +28,7 @@ h2 {
 	padding: 0.77rem 2rem;
 	border-radius: 54px;
 	border: none;
-	background-color: #010c3f;
+	background-color: var(--main-dark-purple);
 	color: #e6e9f7;
 	text-align: center;
 	font-size: 1rem;
@@ -28,4 +38,37 @@ h2 {
 
 .primary-button:hover {
 	background-color: rgba(108, 65, 233, 0.7);
+}
+
+.snackbarRef-appear {
+	left: 0;
+	opacity: 0.01;
+}
+
+.snackbarRef-appear.snackbarRef-appear-active {
+	left: 17%;
+	opacity: 1;
+	transition: all 0.5s ease-in;
+}
+
+.snackbarRef-enter {
+	left: 0;
+	opacity: 0.01;
+}
+
+.snackbarRef-enter.snackbarRef-enter-active {
+	left: 20%;
+	opacity: 1;
+	transition: all 2000ms ease-in;
+}
+
+.snackbarRef-leave {
+	left: 20%;
+	opacity: 1;
+}
+
+.snackbarRef-leave.snackbarRef-leave-active {
+	left: 0;
+	opacity: 0.01;
+	transition: all 2000ms ease-in;
 }

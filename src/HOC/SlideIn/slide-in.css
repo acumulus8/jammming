@@ -1,0 +1,5 @@
+.slide-in {
+	margin-left: 0;
+	opacity: 0;
+	transition: margin-left 1s ease-in, opacity 1s ease-in;
+}
