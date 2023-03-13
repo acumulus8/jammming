@@ -72,7 +72,6 @@ class App extends Component {
 	}
 
 	resetPlaylist() {
-		alert("Are you sure you want to clear the playlist?");
 		this.setState({ playlistTracks: [] }, () => {
 			this.props.showSnackbar("Playlist cleared successfully!", "success", 7000);
 		});
