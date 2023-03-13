@@ -6,7 +6,6 @@ const redirectUri = "https://jammming-proj.netlify.app";
 
 const Spotify = {
 	getAccessToken() {
-		console.log("___ACCESS TOKEN___", accessToken);
 		if (accessToken) {
 			return accessToken;
 		}
@@ -51,10 +50,8 @@ const Spotify = {
 
 	savePlaylist(playlistName, trackUri) {
 		if (!playlistName || !trackUri) {
-			console.log("inside the if statement");
 			return [];
 		}
-		// const accessToken = Spotify.getAccessToken();
 		const headers = { Authorization: `Bearer ${accessToken}` };
 		let userId;
 		return fetch("https://api.spotify.com/v1/me", { headers: headers })

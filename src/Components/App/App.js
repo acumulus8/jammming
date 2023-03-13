@@ -28,7 +28,6 @@ class App extends Component {
 	componentDidMount() {
 		if (window.location.href.match(/access_token=([^&]*)/)) {
 			this.setState({ authorized: true }, () => {
-				console.log("Authorized: " + this.state.authorized);
 				this.props.showSnackbar("Logged in successfully!", "success", 7000);
 			});
 		} else {
