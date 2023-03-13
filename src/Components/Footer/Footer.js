@@ -5,11 +5,11 @@ class Footer extends React.Component {
 		return (
 			<footer>
 				<p>
-					<a target="_blank" href="https://icons8.com/icon/bJeElrwDgE0r/close-window">
+					<a target="_blank" href="https://icons8.com/icon/bJeElrwDgE0r/close-window" rel="noopener noreferrer">
 						Close Window & Clear
 					</a>{" "}
 					icon by{" "}
-					<a target="_blank" href="https://icons8.com">
+					<a target="_blank" href="https://icons8.com" rel="noopener noreferrer">
 						Icons8
 					</a>
 				</p>

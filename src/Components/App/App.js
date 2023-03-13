@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./app.css";
+import "./App.css";
 import "./../../global-styles.css";
 import SiteHeader from "../SiteHeader/SiteHeader";
 import SearchBar from "../SearchBar/SearchBar";
@@ -72,6 +72,7 @@ class App extends Component {
 	}
 
 	resetPlaylist() {
+		alert("Are you sure you want to clear the playlist?");
 		this.setState({ playlistTracks: [] }, () => {
 			this.props.showSnackbar("Playlist cleared successfully!", "success", 7000);
 		});

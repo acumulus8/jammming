@@ -4,8 +4,8 @@ import CloseIcon from "../../image_assets/close-icon.png";
 import "./snackbar.css";
 
 class Snackbar extends React.Component {
-	handleClassName() {
-		switch (this.props.severity) {
+	handleClassName(severity) {
+		switch (severity) {
 			case "success":
 				return "snackbar snackbar--success";
 			case "error":
@@ -19,9 +19,9 @@ class Snackbar extends React.Component {
 
 	render() {
 		return (
-			<div className={this.handleClassName()}>
+			<div className={this.handleClassName(this.props.severity)}>
 				<span className="bold">{this.props.message}</span>
-				<img className={"close-icon"} src={CloseIcon} onClick={this.props.hideSnackbar} />
+				<img className={"close-icon"} src={CloseIcon} onClick={this.props.hideSnackbar} alt="Close message button" />
 			</div>
 		);
 	}
