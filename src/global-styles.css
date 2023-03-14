@@ -72,3 +72,8 @@ h2 {
 	opacity: 0.01;
 	transition: all 2000ms ease-in;
 }
+
+.disabled {
+	pointer-events: none;
+	opacity: 0.35;
+}

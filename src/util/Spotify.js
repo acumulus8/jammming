@@ -32,10 +32,13 @@ const Spotify = {
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
+				} else {
+					throw new Error("Error fetching data from Spotify API");
 				}
 			})
 			.then((jsonResponse) => {
 				if (!jsonResponse || !jsonResponse.tracks) {
+					console.log("Response in spotify search 2nd .then : ", jsonResponse);
 					return [];
 				}
 				return jsonResponse.tracks.items.map((track) => ({
@@ -45,6 +48,9 @@ const Spotify = {
 					album: track.album.name,
 					uri: track.uri,
 				}));
+			})
+			.catch((error) => {
+				return error;
 			});
 	},
 
@@ -57,6 +63,7 @@ const Spotify = {
 		return fetch("https://api.spotify.com/v1/me", { headers: headers })
 			.then((response) => response.json())
 			.then((jsonResponse) => {
+				if (!jsonResponse || !jsonResponse.id) throw new Error("Error reaching the Spotify API");
 				userId = jsonResponse.id;
 				return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
 					headers: headers,
@@ -66,6 +73,7 @@ const Spotify = {
 				})
 					.then((response) => response.json())
 					.then((jsonResponse) => {
+						if (!jsonResponse || !jsonResponse.id) throw new Error("Error saving the playlist to your Spotify account");
 						const playlistId = jsonResponse.id;
 						return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
 							headers: headers,
@@ -74,6 +82,9 @@ const Spotify = {
 							body: JSON.stringify({ uris: trackUri }),
 						}).then((response) => response.json());
 					});
+			})
+			.catch((error) => {
+				return error;
 			});
 	},
 };
