@@ -50,9 +50,10 @@ class App extends Component {
 		this.setState({ playlistTracks: newTracks });
 	}
 
-	savePlaylist(playlistName) {
+	async savePlaylist(playlistName) {
 		const trackUris = this.state.playlistTracks.map((track) => track.uri);
-		return Spotify.savePlaylist(playlistName, trackUris).then(() => {
+		return Spotify.savePlaylist(playlistName, trackUris).then((res) => {
+			if (!res.snapshot_id) this.props.showSnackbar("Error saving playlist!", "error", 7000);
 			this.setState({
 				playlistName: "New Playlist",
 			});
@@ -61,13 +62,17 @@ class App extends Component {
 	}
 
 	search(term) {
-		return Spotify.search(term).then((tracks) =>
-			this.setState({ searchResults: tracks }, () => {
-				if (tracks.length <= 0) {
-					this.props.showSnackbar("No results found!", "error", 7000);
-				}
-			})
-		);
+		return Spotify.search(term).then((tracks) => {
+			if (Array.isArray(tracks)) {
+				this.setState({ searchResults: tracks }, () => {
+					if (tracks.length <= 0) {
+						this.props.showSnackbar("No results found!", "error", 7000);
+					}
+				});
+			} else if (typeof tracks === "object") {
+				this.props.showSnackbar(tracks.toString(), "error", 7000);
+			}
+		});
 	}
 
 	resetPlaylist() {
